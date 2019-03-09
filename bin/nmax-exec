@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+require 'bundler/setup'
+require 'nmax'
+require 'nmax/exec'
+
+Nmax.run
