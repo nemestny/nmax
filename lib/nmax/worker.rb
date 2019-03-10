@@ -1,6 +1,7 @@
 module Nmax
   # class Error < StandardError; end
-  
+
+  ## Worker class for extract and storage numbers
   class Worker
     def initialize(data:, storage:)
       @data = data
@@ -37,6 +38,5 @@ module Nmax
         puts number
       end
     end
-        
   end
 end

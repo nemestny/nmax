@@ -1,5 +1,5 @@
 module Nmax
-
+  ## Storage class for storage sorted numbers
   class Storage
     def initialize(size:)
       @sorted_storage = SortedSet.new
@@ -8,6 +8,7 @@ module Nmax
 
     def add(number)
       return if @sorted_storage.include?(number)
+
       if @sorted_storage.size < @size
         @sorted_storage.add(number)
       else
@@ -24,11 +25,10 @@ module Nmax
     def custom_add(number)
       min_number = @sorted_storage.min
 
-      if min_number < number
-        @sorted_storage.delete(min_number)
-        @sorted_storage.add(number)
-      end
+      return unless min_number < number
+
+      @sorted_storage.delete(min_number)
+      @sorted_storage.add(number)
     end
-   
   end
 end
