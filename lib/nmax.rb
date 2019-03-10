@@ -1,28 +1,20 @@
-# require "nmax/version"
+require "nmax/version"
+require "nmax/worker"
+require "nmax/storage"
 
 module Nmax
   # class Error < StandardError; end
   
   def self.run
-    puts 'hi'
+    size = ARGV[0].to_i
 
-
-    if STDIN.tty? #no typing, use cat command only
-      puts 'No data..'
+    if STDIN.tty? || !size.positive? #no typing, use cat command only
+      puts 'No correct data. See docs for use nmax.'
       return 
     end
 
+    storage = Storage.new(size: size)
     
-    
-    n_max_count = ARGV[0].to_i
-    storage = Storage.new(size: )
-    
-
-
-
-
-    STDIN.each_char do |char|
-      puts char if /\d/.match?(char)
-    end
+    worker = Worker.new(data: STDIN,storage: storage).call
   end
 end
